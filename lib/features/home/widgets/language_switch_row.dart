@@ -7,7 +7,7 @@ class LanguageSwitchRow extends StatelessWidget {
   const LanguageSwitchRow({super.key});
 
   @override
-  Widget build(BuildContext context) {//
+  Widget build(BuildContext context) {
 
     return Obx(
           () => Container(
