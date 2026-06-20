@@ -15,6 +15,8 @@ dependencies:
   url_launcher: ^6.3.2
   audioplayers: ^6.7.1
   dio: ^5.9.2
+  just_audio: ^0.10.5
+  path_provider: ^2.1.6
 
   # Utility Packages
   cupertino_icons: ^1.0.8
