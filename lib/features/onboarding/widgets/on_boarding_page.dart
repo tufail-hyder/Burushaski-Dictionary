@@ -22,10 +22,10 @@ class OnBoardingPage extends StatelessWidget {
           Image.asset(
             image,
             width: size.width * 0.8,
-            height: size.height * 0.55,
+            height: size.height * 0.60,
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineMedium,),
           const SizedBox(height: AppSizes.spaceBtwItems),

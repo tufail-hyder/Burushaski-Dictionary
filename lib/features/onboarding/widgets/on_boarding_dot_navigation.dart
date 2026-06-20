@@ -12,7 +12,7 @@ class OnBoardingDotNavigation extends StatelessWidget {
     final controller = Get.find<OnboardingController>();
 
     return Positioned(
-      bottom: 95,
+      bottom: 110,
       right: 0,
       left: 0,
       child: Center(

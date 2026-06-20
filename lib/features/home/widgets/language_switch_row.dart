@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
-import '../controllers/language_controller.dart';
 
 class LanguageSwitchRow extends StatelessWidget {
   const LanguageSwitchRow({super.key});
@@ -9,8 +7,7 @@ class LanguageSwitchRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Obx(
-          () => Container(
+    return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
           color: AppColors.primary,
@@ -31,7 +28,6 @@ class LanguageSwitchRow extends StatelessWidget {
             Text("English", style: const TextStyle(color: Colors.white, fontSize: 16),),
           ],
         ),
-      ),
     );
   }
 }

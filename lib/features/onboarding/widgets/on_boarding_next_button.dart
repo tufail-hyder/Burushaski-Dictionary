@@ -27,7 +27,7 @@ class OnBoardingNextButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
               )  : const CircleBorder(),
 
-              minimumSize: controller.currentPageIndex.value == 2 ? const Size(420, 50) : const Size(50, 50),
+              minimumSize: controller.currentPageIndex.value == 2 ? const Size(380, 55) : const Size(50, 50),
               padding: controller.currentPageIndex.value == 2 ? const EdgeInsets.symmetric(horizontal: 20) : EdgeInsets.zero,),
             child: controller.currentPageIndex.value == 2 ? const Text("Get Started",
               style: TextStyle(color: Colors.white, fontSize: 15,)) : const Icon(Icons.arrow_forward, color: Colors.white, size: 20),

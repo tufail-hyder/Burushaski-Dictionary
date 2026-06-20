@@ -1,70 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
-import '../features/home/controllers/theme_controller.dart';
-import '../features/settings/screens/settings_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeController>();
+    final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      width: 260,
-      height: 600,
+      height: (size.height * 0.93).clamp(240.0, 1000.0),
       child: Drawer(
+        width: (size.width * 0.67).clamp(240.0, 320.0),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(color: AppColors.primary),
-              child: Center(
-                child: Column(
-                  children: [
-                    const Image(
-                      image: AssetImage("assets/logos/app_logo.png"),
-                      height: 90,
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "English - Burushaski",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Dictionary",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
+            Container(
+              width: double.infinity,
+              height: 280,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: AppColors.primary,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage("assets/logos/app_logo.png"),
+                    height: 140,
+                  ),
+                  const SizedBox(height: 12),
+                  Text("Burushaski - English", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 16),),
+                  const SizedBox(height: 4),
+                  Text("Dictionary", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 16),),
+                ],
               ),
             ),
 
-            Obx(
-                  () => SwitchListTile(
-                activeThumbColor: AppColors.primary,
-                title: Text(
-                  "Dark Mode",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                value: themeController.isDark.value,
-                onChanged: (val) => themeController.toggleTheme(),
-              ),
-            ),
+            const SizedBox(height: 10),
 
             _tile(context, Icons.home, "Home", () => Get.back()),
-            _tile(context, Icons.settings, "Settings",
-                    () => Get.to(() => const SettingsScreen())),
+            _tile(context, Icons.settings, "Settings", () {}),
             _tile(context, Icons.star_rate, "Rate Us", () {}),
             _tile(context, Icons.share, "Share App", () {}),
             _tile(context, Icons.info, "About Us", () {}),
+
             _tile(context, Icons.exit_to_app, "Exit", () {
               Get.defaultDialog(
                 title: "Exit App",
@@ -88,7 +69,7 @@ class AppDrawer extends StatelessWidget {
       ) {
     return ListTile(
       leading: Icon(icon, color: AppColors.primary),
-      title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
+      title: Text(title, style: Theme.of(context).textTheme.bodyLarge,),
       onTap: onTap,
     );
   }

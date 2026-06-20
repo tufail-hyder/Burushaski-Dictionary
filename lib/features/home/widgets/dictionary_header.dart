@@ -28,9 +28,9 @@ class DictionaryHeader extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              LanguageSwitchRow(),
-              SizedBox(height: 16),
+            children: [
+              const LanguageSwitchRow(),
+              const SizedBox(height: 18),
               SearchCard(),
             ],
           ),

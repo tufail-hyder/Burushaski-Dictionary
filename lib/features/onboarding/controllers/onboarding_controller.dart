@@ -25,7 +25,7 @@ class OnboardingController extends GetxController {
       final storage = GetStorage();
       storage.write("IsFirstTime", false);
 
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() =>  HomeScreen());
     } else {
       pageController.nextPage(
         duration: const Duration(milliseconds: 300),

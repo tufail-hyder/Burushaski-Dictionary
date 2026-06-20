@@ -11,11 +11,11 @@ class OnBoardingSkip extends StatelessWidget {
     final controller = Get.find<OnboardingController>();
 
     return Positioned(
-      top: 20,
+      top: 40,
       right: 10,
       child: TextButton(
         onPressed: controller.skipPage,
-        child: const Text("Skip", style: TextStyle(fontSize: 12, color: AppColors.textSecondaryLight )),
+        child: const Text("Skip", style: TextStyle(fontSize: 14, color: AppColors.primary)),
       ),
     );
   }

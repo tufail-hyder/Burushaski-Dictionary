@@ -1,56 +1,82 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import '../controllers/search_controller.dart';
-//
-// class WordDetailScreen extends StatelessWidget {
-//   WordDetailScreen({super.key});
-//
-//   final SearchControllerX controller = Get.find<SearchControllerX>();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final word = Get.arguments;
-//
-//     return Scaffold(
-//       appBar: AppBar(title: Text(word.text)),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(word.text,
-//                 style: const TextStyle(
-//                     fontSize: 30, fontWeight: FontWeight.bold)),
-//
-//             const SizedBox(height: 10),
-//             Text(word.meaning),
-//
-//             const Spacer(),
-//
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                 IconButton(
-//                   icon: const Icon(Icons.volume_up),
-//                   onPressed: () => controller.speak(word.text),
-//                 ),
-//                 IconButton(
-//                   icon: const Icon(Icons.copy),
-//                   onPressed: () => controller.copyWord(word.text),
-//                 ),
-//                 IconButton(
-//                   icon: const Icon(Icons.share),
-//                   onPressed: () => controller.shareWord(word.text),
-//                 ),
-//                 IconButton(
-//                   icon: const Icon(Icons.favorite),
-//                   onPressed: () => controller.toggleFavourite(word),
-//                 ),
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../favorites/controllers/favorites_controller.dart';
+import '../controllers/word_controller.dart';
+
+class WordDetailScreen extends StatelessWidget {
+  final String word;
+  final String meaning;
+
+  WordDetailScreen({
+    super.key,
+    required this.word,
+    required this.meaning,
+  });
+
+  final favController = Get.put(FavoritesController());
+  final controller = Get.put(WordController());
+
+  @override
+  Widget build(BuildContext context)
+  {
+    controller.fetchWord(word);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(word),
+        actions: [
+          Obx(() {
+            final isFav = favController.isFavorite(word);
+
+            return IconButton(
+              icon: Icon(
+                isFav ? Icons.favorite : Icons.favorite_border,
+                color: isFav ? Colors.red : Colors.white,
+              ),
+              onPressed: () => favController.toggleFavorite(word),
+            );
+          }),
+        ],
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // 🔤 WORD
+            Text(
+              word,
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // 📖 MEANING
+            Text(
+              "Meaning",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade700,
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              meaning,
+              style: const TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

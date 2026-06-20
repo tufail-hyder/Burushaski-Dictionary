@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
-import '../controllers/home_controller.dart';
 
 class FeatureGrid extends StatelessWidget {
   const FeatureGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
     final items = [
       ('Vocabulary', Icons.menu_book, AppColors.primary,"ذخیرہ الفاظ"),
       ('Word of the Day', Icons.sort_by_alpha, Colors.pink,"آج کا لفظ"),
@@ -31,7 +28,6 @@ class FeatureGrid extends StatelessWidget {
         final item = items[i];
         return InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () => controller.onFeatureTap(item.$1),
           child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
