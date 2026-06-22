@@ -15,7 +15,7 @@ class SearchCard extends StatelessWidget {
     return Column(
       children: [
 
-        // 🔍 SEARCH BOX//
+        // 🔍 SEARCH BOX
         Container(
           height: 55,
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -53,7 +53,7 @@ class SearchCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 8,
                 ),
               ],
