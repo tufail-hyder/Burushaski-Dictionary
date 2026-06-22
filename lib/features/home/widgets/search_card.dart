@@ -15,7 +15,7 @@ class SearchCard extends StatelessWidget {
     return Column(
       children: [
 
-        // 🔍 SEARCH BOX
+        // 🔍 SEARCH BOX//
         Container(
           height: 55,
           padding: const EdgeInsets.symmetric(horizontal: 12),
