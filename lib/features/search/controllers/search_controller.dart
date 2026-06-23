@@ -1,39 +1,51 @@
+import 'dart:async';
 import 'package:get/get.dart';
+import '../../../models/vocabulary_mode.dart';
 import '../../../services/dictionary_api.dart';
 
 class DictionarySearchController extends GetxController {
-  final Rxn<Map<String, dynamic>> wordData = Rxn<Map<String, dynamic>>();
-  final RxBool isLoading = false.obs;
 
-  // 🔍 SEARCH WORD
-  Future<void> fetchWord(String word) async {
-    try {
-      isLoading.value = true;
+  final RxList<VocabularyModel> suggestions = <VocabularyModel>[].obs;
 
-      final result = await DictionaryApi.search(word);
+  Timer? _debounce;
 
-      if (result != null) {
-        wordData.value = Map<String, dynamic>.from(result);
-      } else {
-        wordData.value = null;
-      }
-    } catch (e) {
-      wordData.value = null;
-    } finally {
-      isLoading.value = false;
-    }
-  }
+  void onSearchChanged(String value) {
 
-  // 🔍 AUTOCOMPLETE
-  Future<void> onSearchChanged(String value) async {
-    if (value.isEmpty) {
+    _debounce?.cancel();
+
+    if (value.trim().isEmpty) {
       suggestions.clear();
       return;
     }
 
-    final results = await DictionaryApi.autoComplete(value);
-    suggestions.value = results;
+    _debounce = Timer(
+      const Duration(milliseconds: 400),
+          () async {
+
+        final words = await DictionaryApi.autoComplete(value);
+
+        final List<VocabularyModel> temp = [];
+
+        for (final w in words.take(8)) {
+
+          final data = await DictionaryApi.search(w);
+
+          if (data != null) {
+
+            temp.add(
+              VocabularyModel.fromJson(data),
+            );
+          }
+        }
+
+        suggestions.value = temp;
+      },
+    );
   }
 
-  final RxList<String> suggestions = <String>[].obs;
+  @override
+  void onClose() {
+    _debounce?.cancel();
+    super.onClose();
+  }
 }

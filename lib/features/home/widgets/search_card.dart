@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../search/controllers/search_controller.dart';
@@ -8,14 +12,14 @@ import '../../search/screens/word_details_screen.dart';
 class SearchCard extends StatelessWidget {
   SearchCard({super.key});
 
-  final controller = Get.find<DictionarySearchController>();
+  final DictionarySearchController controller =
+  Get.find<DictionarySearchController>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-
-        // 🔍 SEARCH BOX
+        // Search Box
         Container(
           height: 55,
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -35,46 +39,48 @@ class SearchCard extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 6),
+        const SizedBox(height: 8),
 
-        // 📌 SUGGESTIONS (SAFE VERSION)
         Obx(() {
           if (controller.suggestions.isEmpty) {
             return const SizedBox();
           }
 
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            constraints: const BoxConstraints(
-              maxHeight: 250,
-            ),
+            constraints: const BoxConstraints(maxHeight: 300),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: const [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: Colors.black12,
                   blurRadius: 8,
                 ),
               ],
             ),
-
-            child: ListView.builder(
+            child: ListView.separated(
               shrinkWrap: true,
-              padding: EdgeInsets.zero,
               itemCount: controller.suggestions.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
               itemBuilder: (context, index) {
-                final word = controller.suggestions[index];
+                final item = controller.suggestions[index];
 
                 return ListTile(
-                  dense: true,
                   leading: const Icon(Icons.search),
-                  title: Text(word),
-
+                  title: Text(
+                    item.word,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    item.meaning,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   onTap: () {
                     FocusScope.of(context).unfocus();
 
-                    Get.to(() => WordDetailScreen(word: word, meaning: '',),
+                    Get.to(() => WordDetailScreen(vocabulary: item,
+                      ),
                     );
                   },
                 );

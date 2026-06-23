@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context)
   {
-    Get.put(DictionarySearchController());
+    Get.put(DictionarySearchController(), permanent: true);
     return Scaffold(
       drawer: const AppDrawer(),
 
@@ -32,18 +32,8 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-
-          title: Text(
-            'Dictionary',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 1,
-            ),
-          ),
-
+          title: Text('Dictionary', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 0.5,),),
           centerTitle: true,
-
           flexibleSpace: const DictionaryHeader(),
         ),
       ),

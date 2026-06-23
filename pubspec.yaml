@@ -17,6 +17,7 @@ dependencies:
   dio: ^5.9.2
   just_audio: ^0.10.5
   path_provider: ^2.1.6
+  flutter_tts: ^4.2.5
 
   # Utility Packages
   cupertino_icons: ^1.0.8

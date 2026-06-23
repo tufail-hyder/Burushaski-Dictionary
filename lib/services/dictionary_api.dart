@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../models/vocabulary_mode.dart';
 
 class DictionaryApi {
-  static const String baseUrl = "http://192.168.1.13:8080/api";
+  static const String baseUrl = "http://192.168.1.5:8080/api";
 
   // 🔍 Autocomplete
   static Future<List<String>> autoComplete(String word) async {
@@ -44,4 +45,31 @@ class DictionaryApi {
       return null;
     }
   }
+
+  static Future<List<VocabularyModel>> getAllWords() async {
+    try {
+      final url = Uri.parse(
+        '$baseUrl/dataset/mobile?limit=2000&meanings=3',
+      );
+
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List data = jsonDecode(response.body);
+
+        return data
+            .map(
+              (e) => VocabularyModel.fromJson(
+            Map<String, dynamic>.from(e),
+          ),
+        )
+            .toList();
+      }
+
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
+
 }

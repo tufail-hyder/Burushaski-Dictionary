@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
+import '../../vocabulary/screens/vocabulary_screen.dart';
 
 class FeatureGrid extends StatelessWidget {
   const FeatureGrid({super.key});
@@ -7,12 +9,12 @@ class FeatureGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      ('Vocabulary', Icons.menu_book, AppColors.primary,"ذخیرہ الفاظ"),
-      ('Word of the Day', Icons.sort_by_alpha, Colors.pink,"آج کا لفظ"),
-      ('Favorites', Icons.favorite_border, Colors.orange,"پسندیدہ"),
-      ('History', Icons.history, Colors.blue,"تاریخ"),
-      ('Share App', Icons.share, Colors.deepPurple,"ایپ  شئیر"),
-      ('Add More', Icons.add, AppColors.primary,"مزید شامل کریں"),
+      ('Vocabulary', Icons.menu_book, AppColors.primary, "ذخیرہ الفاظ"),
+      ('Word of the Day', Icons.sort_by_alpha, Colors.pink, "آج کا لفظ"),
+      ('Favorites', Icons.favorite_border, Colors.orange, "پسندیدہ"),
+      ('History', Icons.history, Colors.blue, "تاریخ"),
+      ('Share App', Icons.share, Colors.deepPurple, "ایپ  شئیر"),
+      ('Add More', Icons.add, AppColors.primary, "مزید شامل کریں"),
     ];
 
     return GridView.builder(
@@ -26,8 +28,16 @@ class FeatureGrid extends StatelessWidget {
       ),
       itemBuilder: (_, i) {
         final item = items[i];
+
         return InkWell(
           borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            if (item.$1 == 'Vocabulary') {
+              Get.to(() => const VocabularyScreen());
+            }
+            // later you can add more:
+            // else if (item.$1 == 'Favorites') { ... }
+          },
           child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +47,6 @@ class FeatureGrid extends StatelessWidget {
                 Text(item.$1, style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 2),
                 Text(item.$4, style: Theme.of(context).textTheme.titleMedium),
-
               ],
             ),
           ),
