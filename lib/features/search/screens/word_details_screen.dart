@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
-import 'package:share_plus/share_plus.dart';
-
 import '../../favorites/controllers/favorites_controller.dart';
 import '../controllers/word_controller.dart';
 
