@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
-import '../../search/screens/word_details_screen.dart';
+import '../../wordDetails/screens/word_details_screen.dart';
 import '../controllers/vocabulary_controller.dart';
 
 class VocabularyScreen extends StatelessWidget {
@@ -36,15 +36,13 @@ class VocabularyScreen extends StatelessWidget {
         return ListView.separated(
           padding: const EdgeInsets.all(12),
           itemCount: controller.words.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 8),
+          separatorBuilder: (_, _) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             final item = controller.words[index];
 
             return Card(
               child: ListTile(
-                title: Text(
-                  item.word,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                title: Text(item.word, style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(item.meaning),
                 trailing: const Icon(Icons.chevron_right),

@@ -16,4 +16,10 @@ class VocabularyModel {
       meaning: json["meaning"] ?? "",
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      "word": word,
+      "meaning": meaning,
+    };
+  }
 }

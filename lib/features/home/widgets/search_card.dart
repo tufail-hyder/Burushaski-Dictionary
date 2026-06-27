@@ -7,7 +7,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../search/controllers/search_controller.dart';
-import '../../search/screens/word_details_screen.dart';
+import '../../wordDetails/screens/word_details_screen.dart';
 
 class SearchCard extends StatelessWidget {
   SearchCard({super.key});

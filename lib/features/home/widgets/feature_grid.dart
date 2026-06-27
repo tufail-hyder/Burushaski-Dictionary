@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
+import '../../favorites/screens/favorites_screen.dart';
 import '../../vocabulary/screens/vocabulary_screen.dart';
 
 class FeatureGrid extends StatelessWidget {
@@ -35,8 +36,9 @@ class FeatureGrid extends StatelessWidget {
             if (item.$1 == 'Vocabulary') {
               Get.to(() => const VocabularyScreen());
             }
-            // later you can add more:
-            // else if (item.$1 == 'Favorites') { ... }
+            if(item.$1=="Favorites"){
+              Get.to(()=>FavoritesScreen());
+            }
           },
           child: Card(
             child: Column(
