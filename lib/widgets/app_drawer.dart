@@ -1,6 +1,9 @@
+import 'package:burushashki_dictionary/features/requestWords/screens/request_word_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import '../../../core/constants/colors.dart';
+import '../features/settings/screens/settings_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -18,7 +21,7 @@ class AppDrawer extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: 280,
+              height: 279,
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
                 color: AppColors.primary,
@@ -38,14 +41,15 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
 
             _tile(context, Icons.home, "Home", () => Get.back()),
-            _tile(context, Icons.settings, "Settings", () {}),
+            _tile(context, Iconsax.add_square, "Request New Word", () { Get.to(() => RequestWordScreen());},),
+            _tile(context, Icons.settings, "Settings", () { Get.to(() => SettingsScreen());},),
             _tile(context, Icons.star_rate, "Rate Us", () {}),
             _tile(context, Icons.share, "Share App", () {}),
             _tile(context, Icons.info, "About Us", () {}),
-
+            _tile(context, Icons.phone, "Contact Us", () {}),
             _tile(context, Icons.exit_to_app, "Exit", () {
               Get.defaultDialog(
                 title: "Exit App",
