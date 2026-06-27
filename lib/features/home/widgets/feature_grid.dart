@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/colors.dart';
 import '../../favorites/screens/favorites_screen.dart';
 import '../../history/screens/history_screen.dart';
+import '../../requestWords/screens/request_word_screen.dart';
 import '../../vocabulary/screens/vocabulary_screen.dart';
 
 class FeatureGrid extends StatelessWidget {
@@ -33,15 +35,25 @@ class FeatureGrid extends StatelessWidget {
 
         return InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () {
+          onTap: () async {
             if (item.$1 == 'Vocabulary') {
               Get.to(() => const VocabularyScreen());
-            }
-            if(item.$1=="Favorites"){
-              Get.to(()=>FavoritesScreen());
-            }
-            else if (item.$1 == "History") {
+
+            } else if (item.$1 == 'Add More') {
+              Get.to(() => RequestWordScreen());
+
+            } else if (item.$1 == 'Favorites') {
+              Get.to(() => FavoritesScreen());
+
+            } else if (item.$1 == 'History') {
               Get.to(() => HistoryScreen());
+
+            } else if (item.$1 == 'Share App') {
+              Share.share(
+                "Download Burushaski Dictionary:\n"
+                "Learn Burushaski words easily with meanings and pronunciation.\n"
+                    "https://play.google.com/store/apps/Burushaski Dictionary",
+              );
             }
           },
           child: Card(

@@ -14,13 +14,12 @@ class VocabularyScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text('Vocabulary', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 0.5,),),
-
+        centerTitle: true,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new,size: 20,color: Colors.white,),
           onPressed: () => Get.back(),
         ),
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {

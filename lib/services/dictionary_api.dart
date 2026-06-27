@@ -6,7 +6,7 @@ import 'dart:typed_data';
 class DictionaryApi {
   static const String baseUrl = "http://192.168.1.6:8080/api";
 
-  // 🔍 Autocomplete
+  // Autocomplete
   static Future<List<String>> autoComplete(String word) async {
     final url = Uri.parse("$baseUrl/dictionary/autocomplete?word=$word");
 
@@ -20,7 +20,7 @@ class DictionaryApi {
     return [];
   }
 
-  // 📖 Full search
+  //search
   static Future<dynamic> search(String word) async {
     try {
       final url = Uri.parse("$baseUrl/dictionary/search?word=$word");
@@ -47,6 +47,7 @@ class DictionaryApi {
     }
   }
 
+  // ALl Words
   static Future<List<VocabularyModel>> getAllWords() async {
     try {
       final url = Uri.parse(
@@ -73,6 +74,7 @@ class DictionaryApi {
     }
   }
 
+ // Pronunciation
   static Future<Uint8List?> getPronunciationAudio(String word) async {
     try {
       final url = Uri.parse(
@@ -86,9 +88,44 @@ class DictionaryApi {
       }
 
       return null;
-    } catch (e) {
-      print("Error: $e");
+    } catch (e)
+    {
       return null;
+    }
+  }
+
+  // Request Word(Add More)
+  static Future<bool> requestWord(
+      String word,
+      String meaning,
+      ) async {
+
+    try {
+
+      final response = await http.post(
+
+        Uri.parse("$baseUrl/request-word"),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: jsonEncode({
+
+          "word": word,
+
+          "meaning": meaning,
+
+        }),
+      );
+
+      return response.statusCode == 200 ||
+          response.statusCode == 201;
+
+    } catch (e) {
+
+      return false;
+
     }
   }
 }
