@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/vocabulary_mode.dart';
+import 'dart:typed_data';
 
 class DictionaryApi {
-  static const String baseUrl = "http://192.168.1.5:8080/api";
+  static const String baseUrl = "http://192.168.1.6:8080/api";
 
   // 🔍 Autocomplete
   static Future<List<String>> autoComplete(String word) async {
@@ -72,4 +73,22 @@ class DictionaryApi {
     }
   }
 
+  static Future<Uint8List?> getPronunciationAudio(String word) async {
+    try {
+      final url = Uri.parse(
+        "$baseUrl/pronounce/pronounce?word=$word",
+      );
+
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        return Uint8List.fromList(response.bodyBytes);
+      }
+
+      return null;
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
 }
