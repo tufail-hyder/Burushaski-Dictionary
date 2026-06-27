@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
 import '../../../models/vocabulary_mode.dart';
 import '../../favorites/controllers/favorites_controller.dart';
+import '../../history/controllers/history_controller.dart';
 import '../controllers/word_detail_controller.dart';
 
 class WordDetailScreen extends StatelessWidget {
@@ -12,12 +13,15 @@ class WordDetailScreen extends StatelessWidget {
     super.key,
     required this.vocabulary,
   });
-
-  final WordDetailController controller = Get.put(WordDetailController());
+  final historyController = Get.put(HistoryController());
   final favoriteController = Get.put(FavoritesController());
+  final WordDetailController controller = Get.put(WordDetailController());
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      historyController.addHistory(vocabulary);
+    });
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
 

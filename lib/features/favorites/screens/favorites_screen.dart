@@ -105,8 +105,7 @@ class FavoritesScreen extends StatelessWidget {
                         icon: const Icon(Icons.favorite, color: Colors.red,),
                       ),
 
-                      const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey,
-                      ),
+                      const Icon(Icons.chevron_right,),
                     ],
                   ),
                 ),

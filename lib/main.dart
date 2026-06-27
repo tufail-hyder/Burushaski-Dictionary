@@ -8,9 +8,6 @@ void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// Widgets Binding
-  WidgetsFlutterBinding.ensureInitialized();
-
   /// GetX Local Storage
   await GetStorage.init();
 
