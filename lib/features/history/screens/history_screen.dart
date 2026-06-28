@@ -66,13 +66,7 @@ class HistoryScreen extends StatelessWidget {
                 leading: const Icon(Icons.history),
 
                 title: Text(word.word),
-
-                subtitle: Text(
-                  word.meaning,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-
+                subtitle: Text(word.meaning, maxLines: 1, overflow: TextOverflow.ellipsis,),
                 trailing: const Icon(Icons.chevron_right),
 
                 onTap: () {

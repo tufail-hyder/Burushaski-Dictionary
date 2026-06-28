@@ -26,7 +26,7 @@ class BurushaskiDictionaryApp extends StatelessWidget {
     super.key,
     required this.isDark,
   });
-
+//
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
