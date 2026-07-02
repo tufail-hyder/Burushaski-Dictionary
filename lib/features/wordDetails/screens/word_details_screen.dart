@@ -30,20 +30,9 @@ class WordDetailScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColors.primary,
         elevation: 0,
-        title: Text(
-          "Word Details",
-          style: Theme.of(context).textTheme.headlineSmall
-              ?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+        title: Text("Word Details", style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.w600,),
         ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.white,
-            size: 20,
-          ),
+        leading: IconButton( icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20,),
           onPressed: () => Get.back(),
         ),
         actions: [
@@ -52,12 +41,7 @@ class WordDetailScreen extends StatelessWidget {
             favoriteController.isFavorite(vocabulary.word);
 
             return IconButton(
-              icon: Icon(
-                isFav
-                    ? Icons.favorite
-                    : Icons.favorite_border,
-                color: Colors.white,
-              ),
+              icon: Icon(isFav ? Icons.favorite : Icons.favorite_border, color: Colors.white,),
               onPressed: () {
                 favoriteController.toggleFavorite(vocabulary);
               },
@@ -82,17 +66,11 @@ class WordDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
 
-                Text(
-                  "Word",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-
+                Text("Word", style: Theme.of(context).textTheme.headlineSmall,),
                 const SizedBox(width: 10),
 
                 Expanded(
-                  child: Divider(
-                    color: Theme.of(context).dividerColor,
-                  ),
+                  child: Divider(color: Theme.of(context).dividerColor,),
                 ),
               ],
             ),
@@ -112,12 +90,7 @@ class WordDetailScreen extends StatelessWidget {
                 width: double.infinity,
                 alignment: Alignment.center,
 
-                child: Text(
-                  vocabulary.word,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge,
-                ),
+                child: Text(vocabulary.word, style: Theme.of(context).textTheme.titleLarge,),
               ),
             ),
 
@@ -128,23 +101,16 @@ class WordDetailScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Divider(
-                    color: Theme.of(context).dividerColor,
-                  ),
+                  child: Divider(color: Theme.of(context).dividerColor,),
                 ),
                 const SizedBox(width: 10),
 
-                Text(
-                  "Meaning",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                Text("Meaning", style: Theme.of(context).textTheme.headlineSmall,),
 
                 const SizedBox(width: 10),
 
                 Expanded(
-                  child: Divider(
-                    color: Theme.of(context).dividerColor,
-                  ),
+                  child: Divider(color: Theme.of(context).dividerColor,),
                 ),
               ],
             ),
@@ -164,25 +130,12 @@ class WordDetailScreen extends StatelessWidget {
 
                   Padding(
                     padding: const EdgeInsets.all(25),
-                    child: Text(
-                      vocabulary.meaning,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium,
-                    ),
+                    child: Text(vocabulary.meaning, textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleMedium,),
                   ),
 
-                  Divider(
-                    color: Theme.of(context).dividerColor,
-                    height: 1,
-                  ),
+                  Divider(color: Theme.of(context).dividerColor, height: 1,),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-
+                  Padding(padding: const EdgeInsets.symmetric(vertical: 8,),
                     child: Row(
                       mainAxisAlignment:
                       MainAxisAlignment.spaceEvenly,
@@ -190,12 +143,7 @@ class WordDetailScreen extends StatelessWidget {
                       children: [
 
                         IconButton(
-                          icon: Icon(
-                            Icons.volume_up,
-                            color: Theme.of(context)
-                                .iconTheme
-                                .color,
-                          ),
+                          icon: Icon(Icons.volume_up, color: Theme.of(context).iconTheme.color,),
                           onPressed: () {
                             controller.speakWord(
                               vocabulary.word,
@@ -204,30 +152,15 @@ class WordDetailScreen extends StatelessWidget {
                         ),
 
                         IconButton(
-                          icon: Icon(
-                            Icons.copy,
-                            color: Theme.of(context)
-                                .iconTheme
-                                .color,
-                          ),
-                          onPressed: () {
-                            controller.copyMeaning(
-                              vocabulary.meaning,
-                            );
+                          icon: Icon(Icons.copy, color: Theme.of(context).iconTheme.color,),
+                          onPressed: () {controller.copyMeaning(vocabulary.meaning,);
                           },
                         ),
 
                         IconButton(
-                          icon: Icon(
-                            Icons.share,
-                            color: Theme.of(context)
-                                .iconTheme
-                                .color,
+                          icon: Icon(Icons.share, color: Theme.of(context).iconTheme.color,
                           ),
-                          onPressed: () {
-                            controller.shareWord(
-                              vocabulary,
-                            );
+                          onPressed: () {controller.shareWord(vocabulary,);
                           },
                         ),
                       ],

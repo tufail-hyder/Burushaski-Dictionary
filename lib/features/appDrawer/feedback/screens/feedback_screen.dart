@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/constants/colors.dart';
+import '../../../../core/constants/colors.dart';
 import '../controllers/feedback_controller.dart';
 import '../widgets/feedback_textfield.dart';
 

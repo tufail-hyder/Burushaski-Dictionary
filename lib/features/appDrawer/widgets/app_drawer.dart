@@ -1,10 +1,11 @@
-import 'package:burushashki_dictionary/appDrawer/about/about_screen.dart';
+import 'package:burushashki_dictionary/features/chatbot/screens/chat_screen.dart';
 import 'package:burushashki_dictionary/features/requestWords/screens/request_word_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/colors.dart';
+import '../about/about_screen.dart';
 import '../contact/contact_screen.dart';
 import '../feedback/screens/feedback_screen.dart';
 import '../settings/screens/settings_screen.dart';
@@ -48,8 +49,8 @@ class AppDrawer extends StatelessWidget {
             const SizedBox(height: 8),
 
             _tile(context, Icons.home, "Home", () => Get.back()),
-            _tile(context, Iconsax.add_square, "Request New Word", () { Get.to(() => RequestWordScreen());},),
             _tile(context, Icons.settings, "Settings", () { Get.to(() => SettingsScreen());},),
+            _tile(context, Icons.smart_toy, "Chatbot", () { Get.to(() => ChatScreen());},),
             _tile(context, Icons.feedback_rounded, "Feedback Us", () {Get.to(() => FeedbackScreen());},),
             _tile(context, Icons.share, "Share App", () {Share.share("Download Burushaski Dictionary:\n"
                   "Learn Burushaski words easily with meanings and pronunciation.\n"

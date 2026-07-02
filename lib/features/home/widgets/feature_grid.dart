@@ -6,6 +6,7 @@ import '../../favorites/screens/favorites_screen.dart';
 import '../../history/screens/history_screen.dart';
 import '../../requestWords/screens/request_word_screen.dart';
 import '../../vocabulary/screens/vocabulary_screen.dart';
+import '../../word_of_the_day/screens/word_of_day_screen.dart';
 
 class FeatureGrid extends StatelessWidget {
   const FeatureGrid({super.key});
@@ -54,6 +55,9 @@ class FeatureGrid extends StatelessWidget {
                 "Learn Burushaski words easily with meanings and pronunciation.\n"
                     "https://play.google.com/store/apps/Burushaski Dictionary",
               );
+            } else if (item.$1 == 'Word of the Day')
+            {
+              Get.to(() => WordOfDayScreen());
             }
           },
           child: Card(

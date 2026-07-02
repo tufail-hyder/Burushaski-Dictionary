@@ -94,6 +94,25 @@ class DictionaryApi {
     }
   }
 
+  // Chat Bot
+  static Future<String> chat(String query) async {
+    try {
+      final url = Uri.parse(
+        "$baseUrl/chat?query=${Uri.encodeComponent(query)}",
+      );
+
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        return response.body;
+      }
+
+      return "Server Error: ${response.statusCode}";
+    } catch (e) {
+      return "Unable to connect to server";
+    }
+  }
+
   // Request Word(Add More)
   static Future<bool> requestWord(
       String word,
@@ -106,17 +125,8 @@ class DictionaryApi {
 
         Uri.parse("$baseUrl/request-word"),
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: jsonEncode({
-
-          "word": word,
-
-          "meaning": meaning,
-
-        }),
+        headers: {"Content-Type": "application/json",},
+        body: jsonEncode({"word": word, "meaning": meaning,}),
       );
 
       return response.statusCode == 200 ||
@@ -127,5 +137,17 @@ class DictionaryApi {
       return false;
 
     }
+  }
+  static Future<VocabularyModel?> getWordOfTheDay() async {
+    final words = await getAllWords();
+
+    if (words.isEmpty) return null;
+
+    final today = DateTime.now();
+    final days = today.difference(DateTime(2026, 7, 2)).inDays;
+
+    final index = days % words.length;
+
+    return words[index];
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/colors.dart';
+import '../../../../core/constants/colors.dart';
 
 class FeedbackController extends GetxController {
   final formKey = GlobalKey<FormState>();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/constants/colors.dart';
+import '../../../../core/constants/colors.dart';
 import '../controller/settings_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
