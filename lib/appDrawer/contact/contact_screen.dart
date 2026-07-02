@@ -51,20 +51,10 @@ class ContactScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-
-            const Text(
-              "Get in Touch",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
+            const Text("Get in Touch", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,),),
             const SizedBox(height: 10),
 
-            Text(
-              "If you have any questions, suggestions, or need assistance, please feel free to contact us.",
-              textAlign: TextAlign.center,
+            Text("If you have any questions, suggestions, or need assistance, please feel free to contact us.", textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey.shade700,
                 height: 1.5,
@@ -88,33 +78,6 @@ class ContactScreen extends StatelessWidget {
               subtitle: phone,
               onTap: () => _launch("tel:$phone"),
             ),
-
-            const Spacer(),
-
-            SizedBox(
-              width: double.infinity,
-              height: 52,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                ),
-                onPressed: () => _launch("mailto:$email"),
-                icon: const Icon(
-                  Icons.email,
-                  color: Colors.white,
-                ),
-                label: const Text(
-                  "Send Email",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -135,7 +98,7 @@ class ContactScreen extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         leading: CircleAvatar(
-          backgroundColor: AppColors.primary.withOpacity(.1),
+          backgroundColor: AppColors.primary.withValues(alpha: 0.1),
           child: Icon(
             icon,
             color: AppColors.primary,
