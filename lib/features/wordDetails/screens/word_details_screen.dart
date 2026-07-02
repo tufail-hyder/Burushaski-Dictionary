@@ -24,7 +24,7 @@ class WordDetailScreen extends StatelessWidget {
       historyController.addHistory(vocabulary);
     });
     return Scaffold(
-      backgroundColor: isDark ? Colors.black : Colors.white,
+      backgroundColor: isDark ? Colors.black : Colors.grey.shade100,
 
       appBar: AppBar(
         centerTitle: true,
@@ -61,7 +61,7 @@ class WordDetailScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Divider(
-                    color: Theme.of(context).dividerColor,
+                    color: Colors.grey,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -70,18 +70,18 @@ class WordDetailScreen extends StatelessWidget {
                 const SizedBox(width: 10),
 
                 Expanded(
-                  child: Divider(color: Theme.of(context).dividerColor,),
+                  child: Divider(color: Colors.grey,),
                 ),
               ],
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
 
             /// WORD CARD
 
             Card(
-              color: Theme.of(context).cardColor,
-              elevation: 2,
+              color: Colors.white,
+              elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
               ),
@@ -90,7 +90,7 @@ class WordDetailScreen extends StatelessWidget {
                 width: double.infinity,
                 alignment: Alignment.center,
 
-                child: Text(vocabulary.word, style: Theme.of(context).textTheme.titleLarge,),
+                child: Text(vocabulary.word, style: Theme.of(context).textTheme.titleMedium,),
               ),
             ),
 
@@ -101,7 +101,7 @@ class WordDetailScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: Theme.of(context).dividerColor,),
+                  child: Divider(color: Colors.grey,),
                 ),
                 const SizedBox(width: 10),
 
@@ -110,18 +110,18 @@ class WordDetailScreen extends StatelessWidget {
                 const SizedBox(width: 10),
 
                 Expanded(
-                  child: Divider(color: Theme.of(context).dividerColor,),
+                  child: Divider(color: Colors.grey),
                 ),
               ],
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
 
             /// Meaning Card
 
             Card(
-              color: Theme.of(context).cardColor,
-              elevation: 2,
+              color: Colors.white,
+              elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
               ),
@@ -129,11 +129,11 @@ class WordDetailScreen extends StatelessWidget {
                 children: [
 
                   Padding(
-                    padding: const EdgeInsets.all(25),
+                    padding: const EdgeInsets.all(35),
                     child: Text(vocabulary.meaning, textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleMedium,),
                   ),
 
-                  Divider(color: Theme.of(context).dividerColor, height: 1,),
+                  Divider(color: Colors.grey, height: 3),
 
                   Padding(padding: const EdgeInsets.symmetric(vertical: 8,),
                     child: Row(
@@ -146,7 +146,7 @@ class WordDetailScreen extends StatelessWidget {
                           icon: Icon(Icons.volume_up, color: Theme.of(context).iconTheme.color,),
                           onPressed: () {
                             controller.speakWord(
-                              vocabulary.word,
+                              vocabulary.meaning,
                             );
                           },
                         ),

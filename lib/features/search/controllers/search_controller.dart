@@ -1,51 +1,40 @@
-import 'dart:async';
 import 'package:get/get.dart';
 import '../../../models/vocabulary_mode.dart';
 import '../../../services/dictionary_api.dart';
 
 class DictionarySearchController extends GetxController {
-
+  final RxList<VocabularyModel> allWords = <VocabularyModel>[].obs;
   final RxList<VocabularyModel> suggestions = <VocabularyModel>[].obs;
 
-  Timer? _debounce;
+  final RxBool isLoading = false.obs;
 
-  void onSearchChanged(String value) {
+  @override
+  void onInit() {
+    super.onInit();
+    loadVocabulary();
+  }
 
-    _debounce?.cancel();
+  Future<void> loadVocabulary() async {
+    isLoading.value = true;
+
+    allWords.value = await DictionaryApi.getAllWords();
+
+    isLoading.value = false;
+  }
+
+  void onSearchChanged(String value)
+  {
 
     if (value.trim().isEmpty) {
       suggestions.clear();
       return;
     }
 
-    _debounce = Timer(
-      const Duration(milliseconds: 400),
-          () async {
+    final query = value.toLowerCase();
 
-        final words = await DictionaryApi.autoComplete(value);
-
-        final List<VocabularyModel> temp = [];
-
-        for (final w in words.take(8)) {
-
-          final data = await DictionaryApi.search(w);
-
-          if (data != null) {
-
-            temp.add(
-              VocabularyModel.fromJson(data),
-            );
-          }
-        }
-
-        suggestions.value = temp;
-      },
-    );
-  }
-
-  @override
-  void onClose() {
-    _debounce?.cancel();
-    super.onClose();
+    suggestions.value = allWords.where((item) {
+      return item.word.toLowerCase().contains(query) ||
+          item.meaning.toLowerCase().contains(query);
+    }).take(20).toList();
   }
 }

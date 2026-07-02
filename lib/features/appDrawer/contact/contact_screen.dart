@@ -51,7 +51,7 @@ class ContactScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-            const Text("Get in Touch", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,),),
+            const Text("Get in Touch", style: TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.bold,),),
             const SizedBox(height: 10),
 
             Text("If you have any questions, suggestions, or need assistance, please feel free to contact us.", textAlign: TextAlign.center,

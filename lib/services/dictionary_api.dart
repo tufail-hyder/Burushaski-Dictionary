@@ -51,7 +51,7 @@ class DictionaryApi {
   static Future<List<VocabularyModel>> getAllWords() async {
     try {
       final url = Uri.parse(
-        '$baseUrl/dataset/mobile?limit=2000&meanings=3',
+        '$baseUrl/dataset/mobile?limit=5000&meanings=3',
       );
 
       final response = await http.get(url);

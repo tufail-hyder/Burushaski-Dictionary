@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../../core/constants/colors.dart';
 import '../controllers/chat_controller.dart';
@@ -74,9 +75,7 @@ class ChatScreen extends StatelessWidget {
                 color: isDark ? Colors.grey.shade900 : Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color:
-                    Colors.black.withValues(alpha: .05),
-                    blurRadius: 5,
+                    color: Colors.black.withValues(alpha: .05), blurRadius: 5,
                   )
                 ],
               ),
@@ -97,9 +96,8 @@ class ChatScreen extends StatelessWidget {
 
                       decoration: InputDecoration(
                         hintText: "Ask anything...",
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(38),),
-                        contentPadding:
-                        const EdgeInsets.symmetric(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(38)),
+                        contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 14,
                         ),
@@ -111,13 +109,13 @@ class ChatScreen extends StatelessWidget {
 
                   /// Send Button
 
-                  CircleAvatar(radius: 18, backgroundColor: AppColors.primary,
+                  CircleAvatar(radius: 20, backgroundColor: AppColors.primary,
 
                     child: IconButton(
                       onPressed: () {
                         controller.sendMessage();
                       },
-                      icon: const Icon(Icons.send, color: Colors.white,size: 14,
+                      icon: const Icon(Iconsax.send_1, color: Colors.white,size: 18,
                       ),
                     ),
                   ),
