@@ -4,7 +4,7 @@ import '../models/vocabulary_mode.dart';
 import 'dart:typed_data';
 
 class DictionaryApi {
-  static const String baseUrl = "http://192.168.1.6:8080/api";
+  static const String baseUrl = "http://192.168.1.8:8080/api";
 
   // Autocomplete
   static Future<List<String>> autoComplete(String word) async {

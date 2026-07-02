@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:burushashki_dictionary/core/constants/colors.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import '../../../widgets/app_drawer.dart';
+import '../../../appDrawer/widgets/app_drawer.dart';
 import '../../search/controllers/search_controller.dart';
 import '../widgets/dictionary_header.dart';
 import '../widgets/feature_grid.dart';

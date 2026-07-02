@@ -2,8 +2,10 @@ import 'package:burushashki_dictionary/features/requestWords/screens/request_wor
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/colors.dart';
-import '../features/settings/screens/settings_screen.dart';
+import '../feedback/screens/feedback_screen.dart';
+import '../settings/screens/settings_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -46,8 +48,11 @@ class AppDrawer extends StatelessWidget {
             _tile(context, Icons.home, "Home", () => Get.back()),
             _tile(context, Iconsax.add_square, "Request New Word", () { Get.to(() => RequestWordScreen());},),
             _tile(context, Icons.settings, "Settings", () { Get.to(() => SettingsScreen());},),
-            _tile(context, Icons.star_rate, "Rate Us", () {}),
-            _tile(context, Icons.share, "Share App", () {}),
+            _tile(context, Icons.feedback_rounded, "Feedback Us", () {Get.to(() => FeedbackScreen());},),
+            _tile(context, Icons.share, "Share App", () {Share.share("Download Burushaski Dictionary:\n"
+                  "Learn Burushaski words easily with meanings and pronunciation.\n"
+                  "https://play.google.com/store/apps/Burushaski Dictionary",
+            );}),
             _tile(context, Icons.info, "About Us", () {}),
             _tile(context, Icons.phone, "Contact Us", () {}),
             _tile(context, Icons.exit_to_app, "Exit", () {
