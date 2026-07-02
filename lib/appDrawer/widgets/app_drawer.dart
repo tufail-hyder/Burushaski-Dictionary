@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/colors.dart';
+import '../contact/contact_screen.dart';
 import '../feedback/screens/feedback_screen.dart';
 import '../settings/screens/settings_screen.dart';
 
@@ -55,7 +56,7 @@ class AppDrawer extends StatelessWidget {
                   "https://play.google.com/store/apps/Burushaski Dictionary",
             );}),
             _tile(context, Icons.info, "About Us", () {Get.to(()=>AboutScreen());}),
-            _tile(context, Icons.phone, "Contact Us", () {}),
+            _tile(context, Icons.phone, "Contact Us", () {Get.to(() => const ContactScreen());},),
             _tile(context, Icons.exit_to_app, "Exit", () {
               Get.defaultDialog(
                 title: "Exit App",
