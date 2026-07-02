@@ -31,25 +31,11 @@ class FavoritesScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.favorite_border_rounded,
-                    size: 90,
-                    color: Colors.grey.shade400,
-                  ),
+                  Icon(Icons.favorite_border_rounded, size: 90, color: Colors.grey.shade400,),
                   const SizedBox(height: 20),
-                  Text(
-                    "No Favorites Yet",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
+                  Text("No Favorites Yet", style: Theme.of(context).textTheme.headlineSmall,),
                   const SizedBox(height: 10),
-                  Text(
-                    "Your favorite words will appear here.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 16,
-                    ),
-                  ),
+                  Text("Your favorite words will appear here.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600, fontSize: 16,),),
                 ],
               ),
             ),
@@ -71,10 +57,7 @@ class FavoritesScreen extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
-                  Get.to(
-                        () => WordDetailScreen(
-                      vocabulary: word,
-                    ),
+                  Get.to(() => WordDetailScreen(vocabulary: word,),
                   );
                 },
                 child: Padding(
@@ -89,9 +72,7 @@ class FavoritesScreen extends StatelessWidget {
                           children: [
 
                             Text(word.word, style: TextStyle(fontWeight: FontWeight.bold),),
-
                             const SizedBox(height: 5),
-
                             Text(word.meaning, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.grey.shade700, fontSize: 15,),),
                           ],
                         ),
@@ -104,7 +85,6 @@ class FavoritesScreen extends StatelessWidget {
                         },
                         icon: const Icon(Icons.favorite, color: Colors.red,),
                       ),
-
                       const Icon(Icons.chevron_right,),
                     ],
                   ),
