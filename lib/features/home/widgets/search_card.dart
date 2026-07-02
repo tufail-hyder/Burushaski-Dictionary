@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import '../../../core/constants/colors.dart';
 import '../../search/controllers/search_controller.dart';
 import '../../wordDetails/screens/word_details_screen.dart';
 
-class SearchCard extends StatefulWidget {
+class SearchCard extends StatefulWidget
+{
   const SearchCard({super.key});
 
   @override
@@ -22,39 +24,92 @@ class _SearchCardState extends State<SearchCard> {
 
   OverlayEntry? _overlayEntry;
   Worker? _suggestionsWorker;
+  final stt.SpeechToText _speech = stt.SpeechToText();
+  bool _isListening = false;
+  bool _speechAvailable = false;
 
   @override
   void initState() {
     super.initState();
+    _initSpeech();
 
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        _showOverlay();
+        if (controller.suggestions.isNotEmpty) {
+          _showOverlay();
+        }
       } else {
         _removeOverlay();
       }
     });
 
-    // Listen to GetX suggestions changes and refresh overlay
-    _suggestionsWorker = ever<List<dynamic>>(controller.suggestions, (_) {
-      if (_focusNode.hasFocus) {
+    _suggestionsWorker = ever(controller.suggestions, (_) {
+      if (!_focusNode.hasFocus) return;
+
+      if (controller.suggestions.isNotEmpty) {
+        _showOverlay();
         _overlayEntry?.markNeedsBuild();
-        if (controller.suggestions.isNotEmpty) {
-          _showOverlay();
-        } else {
-          _removeOverlay();
-        }
+      } else {
+        _removeOverlay();
       }
     });
+  }
+
+  Future<void> _initSpeech() async {
+    try {
+      _speechAvailable = await _speech.initialize(
+        onStatus: (s) => debugPrint('Speech status: $s'),
+        onError: (e) => debugPrint('Speech error: $e'),
+      );
+    } catch (e) {
+      debugPrint('Speech init exception: $e');
+      _speechAvailable = false;
+    }
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _toggleMic() async {
+    if (!_speechAvailable) {
+      Get.snackbar('Voice Search', 'Speech recognition not available on this device.');
+      return;
+    }
+
+    if (_isListening) {
+      await _speech.stop();
+      setState(() => _isListening = false);
+      return;
+    }
+
+    setState(() => _isListening = true);
+
+    await _speech.listen(
+      onResult: (result) {
+        final text = result.recognizedWords;
+        _textController.text = text;
+        _textController.selection = TextSelection.fromPosition(
+          TextPosition(offset: _textController.text.length),
+        );
+        controller.onSearchChanged(text);
+
+        if (result.finalResult) {
+          _speech.stop();
+          setState(() => _isListening = false);
+        }
+      },
+      listenMode: stt.ListenMode.confirmation,
+      partialResults: true,
+    );
   }
 
   @override
   void dispose() {
     _suggestionsWorker?.dispose();
     _removeOverlay();
+    _speech.stop();
     _textController.dispose();
     _focusNode.dispose();
     super.dispose();
+    _speech.stop();
   }
 
   void _showOverlay() {
@@ -161,15 +216,22 @@ class _SearchCardState extends State<SearchCard> {
           border: Border.all(color: Colors.grey.shade300),
         ),
         child: TextField(
+          cursorColor: AppColors.primary,
           controller: _textController,
           focusNode: _focusNode,
           onChanged: controller.onSearchChanged,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: InputBorder.none,
-            prefixIcon: Icon(Iconsax.search_normal_copy),
-            suffixIcon: Icon(Icons.mic_none_outlined),
+            prefixIcon: const Icon(Iconsax.search_normal_copy,color: AppColors.primary,),
+            suffixIcon: IconButton(
+              onPressed: _toggleMic,
+              icon: Icon(
+                _isListening ? Icons.mic : Icons.mic_none_outlined,
+                color: AppColors.primary,
+              ),
+            ),
             hintText: "Search a word...",
-            contentPadding: EdgeInsets.symmetric(vertical: 16),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
           ),
         ),
       ),

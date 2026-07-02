@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               // App Logo
               Image.asset(
-                AppImages.appLogo,
+                AppImages.appLogo3,
                 width: 220,
                 height: 220,
                 fit: BoxFit.contain,

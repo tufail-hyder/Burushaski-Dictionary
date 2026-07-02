@@ -6,6 +6,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.10.7
+
 dependencies:
   flutter:
     sdk: flutter
@@ -19,6 +20,7 @@ dependencies:
   path_provider: ^2.1.6
   intl: ^0.20.3
   flutter_tts: ^4.2.5
+  speech_to_text: ^7.4.0
 
   # Utility Packages
   cupertino_icons: ^1.0.8
@@ -39,12 +41,12 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
 
-
 flutter:
   uses-material-design: true
 
   assets:
     - assets/logos/app_logo.png
+    - assets/logos/
     - assets/onboarding_images/
     - assets/icons/ai.png
 
@@ -59,4 +61,3 @@ flutter:
           style: italic
         - asset: assets/fonts/times-i.ttf
           style: italic
-
