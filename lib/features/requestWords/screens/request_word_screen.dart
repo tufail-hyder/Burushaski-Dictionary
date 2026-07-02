@@ -46,7 +46,7 @@ class RequestWordScreen extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: "Word",
                 hintText: "Enter Burushaski Word",
-                prefixIcon: const Icon(Icons.translate),
+                prefixIcon: const Icon(Icons.translate,color: AppColors.primary),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -64,7 +64,7 @@ class RequestWordScreen extends StatelessWidget {
                 alignLabelWithHint: true,
                 prefixIcon: const Padding(
                   padding: EdgeInsets.only(bottom: 80),
-                  child: Icon(Icons.menu_book),
+                  child: Icon(Icons.menu_book,color: AppColors.primary,),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -87,8 +87,7 @@ class RequestWordScreen extends StatelessWidget {
 
                   onPressed: controller.isLoading.value ? null : controller.submitWord,
 
-                  icon: controller.isLoading.value
-                      ? Container(
+                  icon: controller.isLoading.value ? Container(
                     width: 22,
                     height: 22,
                     padding: const EdgeInsets.all(2),
@@ -96,18 +95,11 @@ class RequestWordScreen extends StatelessWidget {
                       color: Colors.white,
                       strokeWidth: 2,
                     ),
-                  )
-                      : const Icon(
-                    Icons.send,
-                    color: Colors.white,
-                  ),
+                  ) : const Icon(Icons.send, color: Colors.white,),
 
                   label: Text(
                     controller.isLoading.value ? "Submitting..." : "Submit Request",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                    ),
+                    style: const TextStyle(color: Colors.white, fontSize: 17,),
                   ),
                 ),
               ),

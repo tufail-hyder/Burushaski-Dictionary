@@ -37,10 +37,10 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: Obx(
                   () => SwitchListTile(
+                    activeThumbColor: AppColors.primary,
                 secondary: const Icon(Icons.dark_mode),
                 title: const Text("Dark Mode"),
-                subtitle:
-                const Text("Enable dark theme"),
+                subtitle: const Text("Enable dark theme"),
                 value: controller.darkMode.value,
                 onChanged: controller.changeDarkMode,
               ),
@@ -56,15 +56,12 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: Obx(
                   () => SwitchListTile(
-                secondary: const Icon(
-                    Icons.notifications_active),
-                title:
-                const Text("Daily Notification"),
-                subtitle: const Text(
-                    "Receive Word of the Day"),
+                    activeThumbColor: AppColors.primary,
+                secondary: const Icon(Icons.notifications_active),
+                title: const Text("Daily Notification"),
+                subtitle: const Text("Receive Word of the Day"),
                 value: controller.notification.value,
-                onChanged:
-                controller.changeNotification,
+                onChanged: controller.changeNotification,
               ),
             ),
           ),
@@ -92,8 +89,7 @@ class SettingsScreen extends StatelessWidget {
             child: ListTile(
               leading: const Icon(Icons.delete),
               title: const Text("Clear Cache"),
-              subtitle:
-              const Text("Remove temporary files"),
+              subtitle: const Text("Remove temporary files"),
               onTap: controller.clearCache,
             ),
           ),

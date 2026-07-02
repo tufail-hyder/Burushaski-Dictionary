@@ -23,8 +23,7 @@ class HistoryController extends GetxController {
             (e) => VocabularyModel.fromJson(
           Map<String, dynamic>.from(e),
         ),
-      )
-          .toList();
+      ).toList();
     }
   }
 

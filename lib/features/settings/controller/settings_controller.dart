@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../core/constants/colors.dart';
+
 class SettingsController extends GetxController {
   final box = GetStorage();
 
@@ -25,13 +27,7 @@ class SettingsController extends GetxController {
       value ? ThemeMode.dark : ThemeMode.light,
     );
 
-    Get.snackbar(
-      "Settings",
-      value
-          ? "Dark Mode Enabled"
-          : "Dark Mode Disabled",
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    Get.snackbar("Settings", value ? "Dark Mode Enabled" : "Dark Mode Disabled", snackPosition: SnackPosition.BOTTOM,backgroundColor: AppColors.primary);
   }
 
   void changeNotification(bool value) {
@@ -39,20 +35,13 @@ class SettingsController extends GetxController {
 
     box.write("notification", value);
 
-    Get.snackbar(
-      "Settings",
-      value
-          ? "Notification Enabled"
-          : "Notification Disabled",
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    Get.snackbar("Settings", value ? "Notification Enabled" : "Notification Disabled", snackPosition: SnackPosition.BOTTOM,backgroundColor: AppColors.primary);
   }
 
   void clearCache() {
     Get.defaultDialog(
       title: "Clear Cache",
-      middleText:
-      "Are you sure you want to clear cache?",
+      middleText: "Are you sure you want to clear cache?",
       textCancel: "Cancel",
       textConfirm: "Clear",
       onConfirm: () {
@@ -61,6 +50,8 @@ class SettingsController extends GetxController {
         Get.snackbar(
           "Success",
           "Cache cleared successfully.",
+            backgroundColor: AppColors.primary,
+            snackPosition: SnackPosition.BOTTOM
         );
       },
     );
