@@ -1,3 +1,4 @@
+import 'package:burushashki_dictionary/appDrawer/about/about_screen.dart';
 import 'package:burushashki_dictionary/features/requestWords/screens/request_word_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,7 @@ class AppDrawer extends StatelessWidget {
                   "Learn Burushaski words easily with meanings and pronunciation.\n"
                   "https://play.google.com/store/apps/Burushaski Dictionary",
             );}),
-            _tile(context, Icons.info, "About Us", () {}),
+            _tile(context, Icons.info, "About Us", () {Get.to(()=>AboutScreen());}),
             _tile(context, Icons.phone, "Contact Us", () {}),
             _tile(context, Icons.exit_to_app, "Exit", () {
               Get.defaultDialog(
